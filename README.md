@@ -6,7 +6,7 @@
 
 全体チャット、個人チャット、画像・ショート動画の投稿、匿名レベル0〜3の設定を実装しています。学校の在籍確認を組み込む前の研究試作です。
 
-- [試作版を開く](https://r4a1udos-campus-chat.chic-brush-6745.chatgpt.site)（所有者限定の公開を予定）
+- [試作版を開く](https://r4a1udos-campus-chat.uddipenshisu.chatgpt.site)（所有者限定で公開済み）
 - [プログラムと起動方法](src/campus-chat/README.md)
 - [研究計画](docs/research-plan.md)
 - [匿名性の仕様](docs/anonymity.md)
