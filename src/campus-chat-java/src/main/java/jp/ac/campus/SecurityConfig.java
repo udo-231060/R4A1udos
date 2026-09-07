@@ -23,10 +23,11 @@ public class SecurityConfig {
         };
     }
 
-    @Bean SecurityFilterChain security(HttpSecurity http) throws Exception {
+    @Bean @org.springframework.context.annotation.Profile("!github")
+    SecurityFilterChain security(HttpSecurity http) throws Exception {
         // CSRF remains enabled. The browser obtains a session-bound token from /api/csrf.
         http.authorizeHttpRequests(a -> a
-            .requestMatchers("/", "/index.html", "/app.js", "/app.css", "/favicon.svg", "/api/csrf", "/api/register", "/error").permitAll()
+            .requestMatchers("/", "/index.html", "/app.js", "/app.css", "/favicon.svg", "/api/auth-mode", "/api/csrf", "/api/register", "/error").permitAll()
             .anyRequest().authenticated());
         http.formLogin(f -> f.loginProcessingUrl("/api/login")
             .successHandler((req,res,auth) -> res.setStatus(204))

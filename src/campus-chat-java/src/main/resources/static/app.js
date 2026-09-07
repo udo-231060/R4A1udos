@@ -222,6 +222,18 @@ if (navigator.modelContext?.registerTool) {
     return {content:[{type:'text',text:'匿名レベルを選択しました。保存は利用者が設定を保存ボタンで確定します。'}]};
   }});
 }
-try { await token(); profile = await api('/api/chat?action=profile'); display(); await refresh(true); }
+try {
+  const mode = await api('/api/auth-mode');
+  if (mode.github) {
+    $('auth-form').hidden = true;
+    $('auth').querySelector('.subtle').textContent = 'R4A1udosの所有者・参加済みの共同編集者だけが利用できます。';
+    const login = element('a', 'GitHubでログイン', 'primary');
+    login.href = '/oauth2/authorization/github';
+    $('auth').append(login);
+    if (new URLSearchParams(location.search).has('github'))
+      feedback('GitHubの共同編集者であることを確認できませんでした。招待の承認とアプリへの許可を確認してください。', true);
+  }
+  await token(); profile = await api('/api/chat?action=profile'); display(); await refresh(true);
+}
 catch(e) { display(); if (!e.message.includes('ログイン')) feedback(e.message,true); }
 setInterval(() => { if (!document.hidden) refresh(); },5000);

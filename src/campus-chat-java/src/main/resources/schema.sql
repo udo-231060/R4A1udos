@@ -22,3 +22,7 @@ CREATE TABLE IF NOT EXISTS reports (
  message_id VARCHAR(36) NOT NULL REFERENCES messages(id), reporter VARCHAR(36) NOT NULL REFERENCES accounts(id),
  created BIGINT NOT NULL, PRIMARY KEY(message_id,reporter)
 );
+CREATE TABLE IF NOT EXISTS github_accounts (
+ github_id VARCHAR(32) PRIMARY KEY,
+ account_id VARCHAR(36) UNIQUE NOT NULL REFERENCES accounts(id)
+);
