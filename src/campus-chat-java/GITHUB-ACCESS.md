@@ -17,10 +17,11 @@
 
 |変数|値|
 |---|---|
-|SPRING_PROFILES_ACTIVE|github|
+|SPRING_PROFILES_ACTIVE|github,postgres|
 |GITHUB_CLIENT_ID|GitHub AppのClient ID|
 |GITHUB_CLIENT_SECRET|GitHub AppのClient secret|
 |PUBLIC_BASE_URL|公開HTTPS URL（末尾のスラッシュなし）|
+|DB_URL|Neonが表示するJDBC接続文字列|
 
 CookieはSecure・SameSite=Laxになります。HTTPS経由で利用してください。HTTPのローカルURLではログインを維持できません。資格情報が不足している場合は起動を失敗させます。
 
@@ -31,5 +32,7 @@ GitHubの不変ユーザーIDで専用アカウントを作ります。従来の
 ## 公開前の確認
 
 所有者・共同編集者・無関係なGitHubアカウントで実際にログインを試してください。公開ホストが変わる場合はCallback URLとPUBLIC_BASE_URLの両方を更新します。パスワードモードの既存サーバーを外部へ接続しないでください。
+
+RenderではRoot Directoryを`src/campus-chat-java`、LanguageをDockerにします。NeonのConnect画面で接続形式をJava/JDBCに切り替え、表示された`jdbc:postgresql://`から始まる文字列を`DB_URL`へ秘密値として設定します。
 
 GitHub App未登録の状態では、限定公開は未完了です。常設URLとサーバー運用も別途必要です。

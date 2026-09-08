@@ -75,7 +75,11 @@ public class ChatService {
         List<String> rooms = db.query("SELECT room FROM messages WHERE id=?", (r,n) -> r.getString(1), id);
         if (rooms.isEmpty()) throw new Problem(404, "投稿が見つかりません。");
         assertRoom(rooms.getFirst(),user);
-        db.update("MERGE INTO reports(message_id,reporter,created) KEY(message_id,reporter) VALUES (?,?,?)", id,user,System.currentTimeMillis());
+        try {
+            db.update("INSERT INTO reports(message_id,reporter,created) VALUES (?,?,?)", id,user,System.currentTimeMillis());
+        } catch (org.springframework.dao.DuplicateKeyException ignored) {
+            // Reporting the same message twice is intentionally idempotent.
+        }
     }
     @Transactional
     public String send(String user, String room, String text, MultipartFile file) throws IOException {

@@ -38,7 +38,7 @@ java -jar target/campus-chat-1.0.0.jar
 | `src/main/java/jp/ac/campus/SecurityConfig.java` | ログイン・ログアウト・アクセス制御 |
 | `src/main/resources/static/app.js` | JavaScriptの画面処理 |
 | `src/main/resources/static/index.html` / `app.css` | 画面とデザイン |
-| `src/main/resources/schema.sql` | H2データベースのテーブル定義 |
+| `src/main/resources/schema.sql` / `schema-postgres.sql` | H2・PostgreSQLのテーブル定義 |
 
 添付を含む投稿の保存はトランザクション内で処理します。会話の同時作成・投稿制限にはアカウント行のロックを使用します。全体投稿・プロフィール・個人チャット・添付の操作は認証必須です。
 
