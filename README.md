@@ -6,6 +6,8 @@
 
 卒業研究の新しい実装は **Java 21（Spring Boot）とJavaScript** を中心に作成しています。
 
+- **[公開中のJava版 Campus Chatを開く](https://r4a1udos.onrender.com/)**
+  - GitHubでログインし、このリポジトリの所有者・共同編集者だけが利用できます。
 - [Java版のコードと起動方法](src/campus-chat-java/README.md)
 - Java：ログイン、保存、匿名名、個人チャットのアクセス制御
 - JavaScript / HTML / CSS：画面操作、5秒更新、画像・動画の投稿
